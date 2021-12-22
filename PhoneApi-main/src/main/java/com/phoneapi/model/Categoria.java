@@ -2,20 +2,15 @@ package com.phoneapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -26,22 +21,30 @@ public class Categoria implements Serializable {
     private Integer id_categoria;
 
     @NotEmpty
-    @Size(min = 2, max = 12)
     @Column(nullable = false, unique = true)
     private String Nombre;
 
-    @NotEmpty
     @Column(nullable = false)
     private String Estado;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Producto> listarProducto;
+    
+    public Categoria() {
+    }
 
     public Categoria(Integer id_categoria) {
         this.id_categoria = id_categoria;
     }
 
+    public Categoria(Integer id_categoria, String Nombre,String Estado) {
+        this.id_categoria = id_categoria;
+        this.Nombre = Nombre;
+        this.Estado = Estado;
+       
+    }
+    
     private static final long serialVersionUID = 1L;
 
 	public Integer getId_categoria() {
@@ -79,6 +82,8 @@ public class Categoria implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+    
+    
     
     
 }

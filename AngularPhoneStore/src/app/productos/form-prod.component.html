@@ -1,0 +1,72 @@
+
+
+
+<div card="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+      <form #productoForm="ngForm">
+
+
+        <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="form-group row">
+          <label for="estado" class="col-form-label col-sm-2">Estado</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="producto.estado" name="estado">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="producto.nombre" name="nombre">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="stock" class="col-form-label col-sm-2">Stock</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="producto.stock" name="stock">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="fecha_Ingreso" class="col-form-label col-sm-2">Fecha de Ingreso</label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" [(ngModel)]="producto.fecha_Ingreso" name="fecha_Ingreso">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="precio_Compra" class="col-form-label col-sm-2">Precio</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="producto.precio_Compra" name="precio_Compra">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="url_imagen" class="col-form-label col-sm-2">Url imagen</label>
+          <div class="col-sm-6">
+            
+            <input type="file" class="form-control" [(ngModel)]="producto.url_imagen" name="url_imagen" id="urlImg" value="">
+          </div>
+        </div><br>
+  
+        <div class="form-group row">
+          <label for="categoria" class="col-form-label col-sm-2">Categoria</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="producto.categoria" name="categoria">
+          </div>
+        </div><br>
+        <div class="form-group row">
+          <!--<div class="col-sm-6">
+            <button class="btn btn-primary" role="button">Crear Producto</button>
+          </div>-->
+          <!-- // /// ////////////////////-->
+         <button class="btn btn-primary col-2" role="button" (click)='create()' *ngIf="!producto.id_producto else elseBlock" [disabled]="!productoForm.form.valid">Crear Producto</button>
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!productoForm.form.valid">Editar</button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+</div>
