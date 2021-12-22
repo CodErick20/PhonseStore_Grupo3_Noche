@@ -1,0 +1,47 @@
+<!-- si hay un error se va a mostrar lo mensajes guardados en errores -->
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{err}}
+  </li>
+</ul>
+<!-- --------------------------------- -->
+<div card="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+      <form #categoriaForm="ngForm">
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre"   #nombre="ngModel"> <!-- required minlength="4" -->
+            <div class="alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors">
+                Nombre requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group row">
+          <label for="estado" class="col-form-label col-sm-2">Estado</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="categoria.estado" name="estado"  #estado="ngModel"><!-- required minlength="4" -->
+            <div class="alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+              <div *ngIf="estado.errors">
+                Estado requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!categoria.id_categoria else elseBlock" [disabled]="!categoriaForm.form.valid">Crear Categoria</button>
+            <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!categoriaForm.form.valid">Editar</button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>

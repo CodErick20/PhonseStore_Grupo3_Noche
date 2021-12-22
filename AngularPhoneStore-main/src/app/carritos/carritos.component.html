@@ -1,0 +1,24 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Carrito</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Detalle</h5>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Cantidad</th>
+        <th>Producto</th>
+        <th>Usuario</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of carrito">
+        <td>{{c.id_carrito}}</td>
+        <td>{{c.cantidad}}</td>
+        <td>{{c.producto.nombre}}</td>
+        <td>{{c.usuario.nombres}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
